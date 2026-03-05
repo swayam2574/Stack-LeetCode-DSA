@@ -1,24 +1,36 @@
 class Solution {
     public int firstMissingPositive(int[] nums) {
-        int[] filteredNums = Arrays.stream(nums).filter(n -> n > 0).toArray();
-        
-        Arrays.sort(filteredNums);
-        
-        int target = 1;
-        for (int n : filteredNums) {
-            if (n == target) {
-                target++;
-            } else if (n > target) {
-                return target;
+        int max = Integer.MIN_VALUE;
+
+        for(int i=0;i<nums.length;i++) {
+            if(nums[i] < 0) {
+                nums[i] = 0;
+            }
+            max = Math.max(max, nums[i]);
+        }
+
+        for(int i=0;i<nums.length;i++) {
+            int index = Math.abs(nums[i]) - 1;
+            if(index >= 0 && index < nums.length) {
+                int val = nums[index];
+                if(val == 0) {
+                    nums[index] = (nums.length+1)* - 1;
+                } else {
+                    nums[index] = Math.abs(nums[index]) * - 1;
+                }
             }
         }
-        
-        return target;        
+
+        for(int i=1;i<=nums.length;i++) {
+            int index = i - 1;
+            if(nums[index] >= 0) {
+                return i;
+            }
+        }
+
+        return max + 1;
     }
 }
-
-
-
 
 // class Solution {
 //     public int firstMissingPositive(int[] nums) {
