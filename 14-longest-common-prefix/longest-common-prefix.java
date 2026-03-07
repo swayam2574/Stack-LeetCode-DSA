@@ -1,7 +1,7 @@
 class Solution {
     public String longestCommonPrefix(String[] strs) {
 
-        // method 1
+        // ________________________ method 1
         if (strs == null || strs.length == 0) return "";
 
         Arrays.sort(strs);
@@ -23,7 +23,7 @@ class Solution {
 
 
 
-        // method 2
+        // ________________________ method 2
         // if (strs == null || strs.length == 0) return "";
 
         // String prefix = strs[0];
@@ -36,8 +36,6 @@ class Solution {
         // }
 
         // return prefix;
-
-
 
     }
 }
